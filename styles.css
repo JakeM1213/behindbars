@@ -1,0 +1,276 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  overflow-x: hidden;
+  background-color: black;
+  font-family: "Sixtyfour Convergence", sans-serif;
+  color: black;
+  cursor: none;
+}
+
+#scrollContainer {
+  width: 100%;
+  height: 100vh; /* Viewport height to enable scrolling */
+  overflow-y: scroll; /* Ensure vertical scrolling */
+  position: relative;
+  background: radial-gradient(circle at center, yellow 10%, black 50%);
+  animation: pulsate 3s infinite alternate;
+  background-size: cover;
+}
+
+@keyframes pulsate {
+  0% {
+    background: radial-gradient(circle at center, yellow 10%, black 50%);
+  }
+  100% {
+    background: radial-gradient(circle at center, yellow 15%, black 55%);
+  }
+}
+
+#content {
+  width: 100%;
+  height: 500vh; /* Ensure enough content for scrolling */
+  position: relative;
+}
+
+/* Title and caption for "BEHIND BARS" */
+/* Center the title and caption and make it fade out on scroll */
+.title-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 9999;
+  color: white;
+  opacity: 1;
+  transition: opacity 1s ease-out; /* Smooth fade-out effect */
+}
+
+.title {
+  font-family: "Sixtyfour Convergence", sans-serif;
+  font-size: 5rem;
+  color: #f3fc44; /* Neon yellow color */
+  text-shadow: 0 0 10px rgba(255, 77, 77, 0.8), 
+               0 0 20px rgba(255, 77, 77, 0.6), 
+               0 0 30px rgba(255, 77, 77, 0.4);
+  animation: glow 1.5s infinite alternate;
+}
+
+/* Neon glow animation */
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 77, 77, 0.8), 
+                 0 0 20px rgba(255, 77, 77, 0.6), 
+                 0 0 30px rgba(255, 77, 77, 0.4);
+  }
+  100% {
+    text-shadow: 0 0 20px rgba(255, 77, 77, 1), 
+                 0 0 30px rgba(255, 77, 77, 0.8), 
+                 0 0 40px rgba(255, 77, 77, 0.6);
+  }
+}
+
+/* Caption styles */
+.caption {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 1.5rem;
+  color: #fff;
+  opacity: 0;
+  animation: fadeIn 3s forwards;
+  margin-top: 10px;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+/* Fade in the caption */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Ripple effect */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  animation: fadeOut 1s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* White dots that fade in/out like people */
+.randomObject {
+  position: absolute;
+  width: 20px; /* Bigger size */
+  height: 20px;
+  border-radius: 50%;
+  background-color: white; /* White color for the dots */
+  opacity: 0;
+  animation: fadeInOut 5s forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Hidden message styling */
+.hiddenMessage {
+  position: absolute;
+  color: white;
+  font-size: 2rem;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+/* Flicker effect for lights */
+.flicker {
+  animation: flicker 2s infinite;
+}
+
+@keyframes flicker {
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  24%,
+  55% {
+    opacity: 0;
+  }
+}
+
+/* Full-screen siren light effect */
+.sirenEffect {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: linear-gradient(90deg, red 0%, transparent 50%, blue 100%);
+  animation: flashSiren 0.2s infinite;
+  opacity: 1; /* Fully visible initially */
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 3s ease; /* Smooth fade-out over 3 seconds */
+}
+
+@keyframes flashSiren {
+  0% {
+    opacity: 1;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+/* Pop-up window style */
+.popupWindow {
+  position: absolute;
+  width: 150px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.popupWindow:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+
+/* Modal content (video or image) */
+.popupContent {
+  display: none;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 2px solid white; /* White border for content */
+}
+/* Cryptic message styling */
+.crypticMessage {
+  position: absolute;
+  color: #f3fc44; /* Neon yellow */
+  font-family: "Sixtyfour Convergence", sans-serif;
+  font-size: 2rem;
+  opacity: 0;
+  text-shadow: 0 0 10px rgba(243, 252, 68, 0.8), 0 0 20px rgba(243, 252, 68, 0.6), 0 0 30px rgba(243, 252, 68, 0.4);
+  animation: crypticFadeIn 7s ease-in-out;
+}
+
+/* Fade-in effect for cryptic messages */
+@keyframes crypticFadeIn {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/* Styling for the cryptic flood text */
+.crypticFlood {
+  position: absolute;
+  color: #f3fc44; /* Neon yellow color */
+  font-family: "Sixtyfour Convergence", sans-serif;
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px rgba(243, 252, 68, 0.8), 0 0 20px rgba(243, 252, 68, 0.6), 0 0 30px rgba(243, 252, 68, 0.4);
+  animation: moveUpAndFade 5s ease forwards;
+  opacity: 0;
+}
+
+/* Keyframe animation for text flooding effect */
+@keyframes moveUpAndFade {
+  0% {
+    transform: translateY(100px); /* Start slightly below */
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px); /* Move upwards */
+    opacity: 0; /* Fade out */
+  }
+}
